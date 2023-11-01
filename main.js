@@ -53,3 +53,33 @@ const juanita = new Student(
         "Curso de Creación de Personajes"
     ],
 );
+
+//Prototipos con la sintaxis de clases
+
+class Student2 {
+    //Crear los atributos por defecto con un constructor
+    constructor({
+        name,
+        cursosAprobados = [],
+        age,
+        email,
+    }) {
+        this.name = name;
+        this.age = age;
+        this.cursosAprobados = cursosAprobados;
+        this.email = email;
+
+    }
+
+    aprobarCurso(nuevoCurso) {
+        this.cursosAprobados.push(nuevoCurso);
+    }
+}
+
+
+//Crear una instancia de este prototipo
+const miguelito = new Student2({
+    email: "miguelito@platzi.com",
+    age: 28,
+    name: "Miguel",
+});
