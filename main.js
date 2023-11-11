@@ -1,46 +1,131 @@
-class Banda {
+//Crear prototipo o
+class Student {
     constructor({
-        nombre,
-        generos = [],
+        name,
+        email,
+        username,
+        twitter,
+        instagram,
+        facebook = undefined,
+        approvedCourses = [],
+        learningPaths = [],
+
     }) {
-        this.nombre = nombre;
-        this.generos = generos;
-        this.integrantes = [];
-    }
-    agregarIntegrante(integranteNuevo) {
-        let nombre = integranteNuevo.nombre; //ya tengo el nombre
-        let instrumento = integranteNuevo.instrumento; //ya tengo el nombre
-        //console.log(Object.values(this.integrantes));
-        let baterista = this.integrantes.find(integrante => integrante.instrumento === "Bateria");
-        if (baterista) {
-            console.log("Ya tiene baterista!");
-            console.log(baterista);
-
-        } else {
-            this.integrantes.push({ nombre, instrumento });
-            console.log("Integrante Registrado");
-            console.log(this.integrantes)
-        }
+        this.name = name,
+            this.email = email;
+        this.username = username;
+        this.socialMedia = {
+            twitter,
+            instagram,
+            facebook,
+        };
+        this.approvedCourses = approvedCourses;
+        this.learningPaths = learningPaths;
     }
 }
 
-const data = {
-    nombre: "Los Jacks",
-    generos: ["rock", "pop", "post-punk"],
-    integrantes: [],
-}
-
-class Integrante {
+class LearningPath {
     constructor({
-        nombre,
-        instrumento,
+        name,
+        courses = [],
     }) {
-        this.nombre = nombre;
-        this.instrumento = instrumento;
+        this.name = name;
+        this.courses = courses;
+    }
+}
+
+class Course {
+    constructor({
+        name,
+        classes = [],
+        comments = [],
+    }) {
+        this.name = name;
+        this.classes = classes;
+        this.comments = comments;
     }
 }
 
 
-const banda = new Banda(data)
-banda.agregarIntegrante(new Integrante({ nombre: "Erik", instrumento: "Guitarra" }))
-banda.agregarIntegrante(new Integrante({ nombre: "Paul", instrumento: "Bateria" }))
+
+//Creamos una instancia del prototipo u objeto
+const juan2 = new Student({
+    name: "JuanDC",
+    username: "juandc",
+    email: "juanito@juanito.com",
+    twitter: "fjuandc",
+    learningPaths: [
+        escuelaWeb,
+        escuelaVgs,
+    ],
+});
+
+const miguelito2 = new Student({
+    name: "Miguelito",
+    username: "miguelitofeliz",
+    email: "miguelito@jmiguelito.com",
+    instagram: "miguelito_feliz",
+    learningPaths: [
+        escuelaWeb,
+        escuelaData,
+    ],
+});
+
+//Creamos una instancias del prototipo u objeto escuelas
+const escuelaWeb = new LearningPath({
+    name: "Escuela de Desarrollo Web",
+    courses: [
+        cursoProgBasica,
+        cursoDefinitivoHTML,
+        cursoPracticoHTML,
+    ],
+});
+
+const escuelaData = new LearningPath({
+    name: "Escuela de Data Science",
+    courses: [
+        cursoProgBasica,
+        cursoDataBussines,
+        cursoDataViz,
+    ]
+});
+
+const escuelaVgs = new LearningPath({
+    name: "Escuela de Videojuegos",
+    courses: [
+        cursoProgBasica,
+        cursoIntroVideojuegos,
+        cursoUnity,
+    ]
+});
+
+////Creamos una instancia del prototipo u objeto de cursos
+const cursoProgBasica = new Course({
+    name: "Curso gratis de Programación Básica",
+});
+
+const cursoDefinitivoHTML = new Course({
+    name: "Curso Definitivo de HTML y CSS",
+});
+
+const cursoPracticoHTML = new Course({
+    name: "Curso Práctico de HTML y CSS",
+});
+
+const cursoDataBussines = new Course({
+    name: "Curso DataBussines",
+});
+
+const cursoDataViz = new Course({
+    name: "Curso Dataviz",
+});
+
+const cursoIntroVideojuegos = new Course({
+    name: "Curso Introducción a la Producción de video juegos",
+});
+
+const cursoUnity = new Course({
+    name: "Curso Unity",
+});
+
+
