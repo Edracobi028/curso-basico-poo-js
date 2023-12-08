@@ -11,9 +11,9 @@ class Student {
         learningPaths = [],
 
     }) {
-        this.name = name,
-            this.email = email;
-        this.username = username;
+        this._name = name,
+        this._email = email;
+        this._username = username;
         this.socialMedia = {
             twitter,
             instagram,
@@ -22,6 +22,39 @@ class Student {
         this.approvedCourses = approvedCourses;
         this.learningPaths = learningPaths;
     }
+
+    get name(){
+        return this._name;
+    }
+    set name(newName){
+        this._name = newName;
+    }
+
+    get email(){
+        return this._email;
+    }
+    set email(newEmail){
+        this._email = newEmail;
+    }
+
+    get username(){
+        return this._username;
+    }
+    set username(username){
+        this._username = username;
+    }
+
+
+/* 
+    get XXX(){
+        return this.XXX;
+    }
+    set XXX(XXX){
+        this.XXX = XXX;
+    } */
+
+
+
 }
 
 
@@ -32,19 +65,19 @@ class Course {
         classes = [],
         comments = [],
     }) {
-        this._name = name; //Agregamos el guion bao para indicar que es un atributo privado
+        this._name = name; //Agregamos el guion bajo para indicar que es un atributo privado
         this.classes = classes;
         this.comments = comments;
     }
 
-    //1er get, lo convertiremos en un metodo, para llamarlo sin que sea necesariamente un metodo ()
+    //Crear un metodo get para que muestre el atributo name
     get name(){
         return this._name
     }
 
-    //Crear un metodo set para cambiar el nombre
+    //Crear un metodo set para cambiar el atributo name de un curso
     set name(nuevoNombre){
-        if(nuevoNombre === "Curso Malito de Programación Basica"){
+        if(nuevoNombre === "Curso Malito de Programación Básica"){
             console.error("Web... no");
         } else {
             this._name = nuevoNombre;
@@ -90,15 +123,22 @@ class LearningPath {
         name,
         courses = [],
     }) {
-        this.name = name;
+        this._name = name;
         this.courses = courses;
+    }
+
+    get name(){
+        return this._name;
+    }
+    set name(newName){
+        this._name = newName;
     }
 }
 
 
 //Creamos una instancias del prototipo u objeto escuelas
  const escuelaWeb = new LearningPath({
-    name: "Escuela de Desarrollo Web",
+    name: "Escuela de Desarrollo",
     courses: [
         cursoProgBasica,
         cursoDefinitivoHTML,
