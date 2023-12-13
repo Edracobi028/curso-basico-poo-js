@@ -1,3 +1,8 @@
+
+
+
+
+
 //Crear prototipo o
 class Student {
     constructor({
@@ -55,6 +60,39 @@ class Student {
 
 
 
+}
+
+
+
+//Metodo que reciba el ID, por fuera ligar el link del video con el ID 
+function videoPlay(id) {
+    const urlSecreta = "https://platziultrasecreto.com/"+ id;
+    console.log("Se está reproducioendo desde la url " + urlSecreta);
+}
+
+//Metodo que pause el video
+function videoStop(id) {
+    const urlSecreta = "https://platziultrasecreto.com/"+ id;
+    console.log("Pausamos la url " + urlSecreta);
+}
+// Los export nos permiten definir en los modulos cuales son las unicas clases, prototipos, variables las unicas partes que podamos acceder
+export class PLatziClass {
+    constructor({
+        name,
+        videoID,
+    }) {
+        this.name = name;
+        this.videoID = videoID;
+    }
+
+    //Creamos un metodo para que puedan reproducir el video
+    reproducir(){
+        videoPlay(this.videoID);
+    }
+    //Creamos un metodo para que puedan pausar el video
+    pausar(){
+        videoStop(this.videoID);
+    }
 }
 
 
