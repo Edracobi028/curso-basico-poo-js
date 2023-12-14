@@ -62,7 +62,46 @@ class Student {
 
 }
 
+//Codigo para futuras subclases, usando extend a la clase Student 
+class FreeStudent extends Student{
+    //llamar al constructor de la clase Student con 'props'
+    constructor(props){ //como parametro usamos 'props' Para recibir las propiedades de las instancias
+        super(props); //Llamar al constructor de la clase madre con super() y enviarle de regreso con 'props' lo que recibimos de las instancias
+    }
+    //Nuevo metodo para manipular lista de approvedCourses y/o añadir un nuevo curso y validar si la clase esta disponible
+    approveCourse(newCourse) {
+        if(newCourse.isFree){
+            this.approvedCourses.push(newCourse);
+        } else {
+            console.warn("Lo sentimos" + this.name + ", solo puedes tomar cursos abiertos");
+        }
+    }
+}
 
+class BasicStudent  extends Student{
+    constructor(props){ 
+        super(props); 
+    }
+    //Validar si el curso no esta en ingles
+    approveCourse(newCourse) {
+        if(newCourse.lang !== "english"){
+            this.approvedCourses.push(newCourse);
+        } else {
+            console.warn("Lo sentimos" + this.name + ", no puedes tomar cursos en inglés");
+        }
+    }
+}
+
+class ExpertStudent  extends Student{
+    constructor(props){ 
+        super(props); 
+    }
+
+    approveCourse(newCourse) {
+        this.approvedCourses.push(newCourse);
+    }
+
+}
 
 //Metodo que reciba el ID, por fuera ligar el link del video con el ID 
 function videoPlay(id) {
@@ -76,7 +115,7 @@ function videoStop(id) {
     console.log("Pausamos la url " + urlSecreta);
 }
 // Los export nos permiten definir en los modulos cuales son las unicas clases, prototipos, variables las unicas partes que podamos acceder
-export class PLatziClass {
+class PLatziClass {
     constructor({
         name,
         videoID,
@@ -102,10 +141,14 @@ class Course {
         name,
         classes = [],
         comments = [],
+        isFree = false,//agregar parametro para checar que no sean gratis
+        lang = "spanish",//agregar parametro para checar el lenguaje
     }) {
         this._name = name; //Agregamos el guion bajo para indicar que es un atributo privado
         this.classes = classes;
         this.comments = comments;
+        this.isFree = isFree;
+        this.lang = lang;
     }
 
     //Crear un metodo get para que muestre el atributo name
@@ -129,6 +172,7 @@ const cursoDefinitivoHTML = new Course({
 
 const cursoPracticoHTML = new Course({
     name: "Curso Práctico de HTML y CSS",
+    lang: "english", 
 });
 
 const cursoDataBussines = new Course({
@@ -150,6 +194,7 @@ const cursoUnity = new Course({
 ////Creamos una instancia del prototipo u objeto de cursos
 const cursoProgBasica = new Course({
     name: "Curso gratis de Programación Básica",
+    isFree: true,
 });
 
 //cursoProgBasica.name
@@ -204,7 +249,7 @@ const escuelaVgs = new LearningPath({
 
 
 //Creamos una instancia del prototipo u objeto
-const juan2 = new Student({
+const juan = new FreeStudent({
     name: "JuanDC",
     username: "juandc",
     email: "juanito@juanito.com",
@@ -215,7 +260,7 @@ const juan2 = new Student({
     ],
 });
 
-const miguelito2 = new Student({
+const miguelito = new BasicStudent({
     name: "Miguelito",
     username: "miguelitofeliz",
     email: "miguelito@jmiguelito.com",
