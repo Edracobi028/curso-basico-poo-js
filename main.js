@@ -1,6 +1,26 @@
+//Nos quedmaos en Video 18 13-dic-2023
+// Clase para ver el polimorfismo
+class Comment {
+    constructor({
+        content,
+        studentName,
+        studentRole = "estudiante",
 
+    }){
+        this.content = content;
+        this.studentName = studentName;
+        this.studentRole = studentRole;
+        this.likes = 0;
+    }
 
-
+    //Funcion para nuestra clase
+    publicar(){
+        console.log(this.studentName + "(" + this.studentRole  +")" );// JuanDC (estudiante)
+        console.log(this.likes + " likes");    // 0 likes
+        console.log(this.content );    //Me encantó el curso!
+        
+    }
+}
 
 
 //Crear prototipo o
@@ -49,16 +69,17 @@ class Student {
         this._username = username;
     }
 
+    //funcion que reciba el comentario y sea heredado por las clases diferentes de estudiantes
+    publicarComentario(commentContent){
+        //Crear la instancia del comentario y enviarle los argumentos necesarios
+        const comment = new Comment({
+            content :commentContent, //es igual a lo que estamos recibiendo
+            studentName: this.name,
 
-/* 
-    get XXX(){
-        return this.XXX;
+        });
+        //Despues de la instancia vamos a publicar
+        comment.publicar();
     }
-    set XXX(XXX){
-        this.XXX = XXX;
-    } */
-
-
 
 }
 
@@ -99,6 +120,29 @@ class ExpertStudent  extends Student{
 
     approveCourse(newCourse) {
         this.approvedCourses.push(newCourse);
+    }
+
+}
+
+class TeacherStudent  extends Student{
+    constructor(props){ 
+        super(props); 
+    }
+
+    approveCourse(newCourse) {
+        this.approvedCourses.push(newCourse);
+    }
+
+    //Sobrescribir el rol de estudiante a Maestro
+    publicarComentario(commentContent){
+        //Crear la instancia del comentario y enviarle los argumentos necesarios
+        const comment = new Comment({
+            content :commentContent, //es igual a lo que estamos recibiendo
+            studentName: this.name,
+            studentRole: "profesor",
+        });
+        //Despues de la instancia vamos a publicar
+        comment.publicar();
     }
 
 }
@@ -269,4 +313,11 @@ const miguelito = new BasicStudent({
         escuelaWeb,
         escuelaData,
     ],
+});
+
+const freddy = new TeacherStudent({
+    name: "Freddy Vega",
+    username: "freddier",
+    email: "f@gep.com",
+    instagram: "freddiervega",
 });
